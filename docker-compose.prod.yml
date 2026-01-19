@@ -6,11 +6,17 @@ services:
     command: node dist/server.js
     ports:
       - "3000:3000"
+    env_file:
+      - .env.prod
 
   worker:
     build: .
     command: node dist/worker.js
+    env_file:
+      - .env.prod
 
   recovery:
     build: .
     command: node dist/recovery.js
+    env_file:
+      - .env.prod
