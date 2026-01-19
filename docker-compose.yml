@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    command: node dist/server.js
+    ports:
+      - "3000:3000"
+
+  worker:
+    build: .
+    command: node dist/worker.js
+
+  recovery:
+    build: .
+    command: node dist/recovery.js
