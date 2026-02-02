@@ -1,5 +1,5 @@
 {
-  "id": "63bccc50-6df1-4893-bd1e-ebc49d516ca4",
+  "id": "86bbfee2-9db3-48b1-ae90-3ecd07996376",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -301,6 +301,21 @@
           "columns": [
             {
               "expression": "order_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_payment_updated_at": {
+          "name": "idx_payment_updated_at",
+          "columns": [
+            {
+              "expression": "updated_at",
               "isExpression": false,
               "asc": true,
               "nulls": "last"

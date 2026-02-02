@@ -12,5 +12,6 @@ export const payments = pgTable('payments', {
     status: genericStatusEnum('status').default(GenericStatus.PENDING).notNull()
 }, (table) => [
     index("idx_payment_status").on(table.status),
-    index("idx_payment_order_id").on(table.orderId)
+    index("idx_payment_order_id").on(table.orderId),
+    index("idx_payment_updated_at").on(table.updatedAt)
 ])

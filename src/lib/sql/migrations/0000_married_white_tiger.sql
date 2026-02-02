@@ -43,4 +43,5 @@ CREATE INDEX "idx_orders_user_id" ON "orders" USING btree ("user_id");--> statem
 CREATE INDEX "idx_orders_status" ON "orders" USING btree ("status");--> statement-breakpoint
 CREATE INDEX "idx_orders_c_at" ON "orders" USING btree ("created_at" DESC NULLS LAST);--> statement-breakpoint
 CREATE INDEX "idx_payment_status" ON "payments" USING btree ("status");--> statement-breakpoint
-CREATE INDEX "idx_payment_order_id" ON "payments" USING btree ("order_id");
+CREATE INDEX "idx_payment_order_id" ON "payments" USING btree ("order_id");--> statement-breakpoint
+CREATE INDEX "idx_payment_updated_at" ON "payments" USING btree ("updated_at");
