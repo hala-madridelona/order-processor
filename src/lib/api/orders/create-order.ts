@@ -40,7 +40,7 @@ export const createOrder = async (request: Request, response: Response) => {
         try {
             await OrderQueue.enqueue({ orderId: newOrderId});
         } catch (error){
-            console.log("Something went wrong with SQS");
+            console.log("Something went wrong with SQS => ", error);
         }
     
         return response.status(200).send(JSON.stringify(newOrder));

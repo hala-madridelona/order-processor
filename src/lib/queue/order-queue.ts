@@ -8,9 +8,9 @@ export class OrderQueue {
     static initQueue() {
       if (!OrderQueue.queue) {
         OrderQueue.queue = new SQSClient({
-          region: "ap-south-1",
+          region: process.env.AWS_DEFAULT_REGION || "ap-south-1",
           ...(process.env.NODE_ENV === "local" && {
-            endpoint: "http://localhost:4566",
+            endpoint: process.env.AWS_ENDPOINT_URL || "",
             credentials: {
               accessKeyId: "test",
               secretAccessKey: "test",

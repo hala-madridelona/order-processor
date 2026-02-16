@@ -5,7 +5,6 @@ import { GenericStatus, genericStatusEnum } from "./shared.js";
 export const inventory_reservations = pgTable('inventory_reservations', {
     id: uuid('id').primaryKey().defaultRandom(),
     orderId: uuid('order_id').notNull().references(() => orders.id).unique(),
-    idempotencyKey: text('idempotency_key').unique().notNull(),
     createdAt: timestamp('created_at').notNull().defaultNow(),
     status: genericStatusEnum('status').default(GenericStatus.PENDING).notNull()
 },
