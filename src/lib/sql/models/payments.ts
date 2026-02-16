@@ -5,7 +5,6 @@ import { GenericStatus, genericStatusEnum } from "./shared.js";
 export const payments = pgTable('payments', {
     id: uuid('id').primaryKey().defaultRandom(),
     orderId: uuid('order_id').notNull().references(() => orders.id).unique(),
-    idempotencyKey: text('idempotency_key').unique().notNull(),
     createdAt: timestamp('created_at').notNull().defaultNow(),
     updatedAt: timestamp('updated_at').notNull().defaultNow(),
     gatewayPaymentId: text('gateway_payment_id').unique(),
