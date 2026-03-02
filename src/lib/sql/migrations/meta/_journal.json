@@ -15,6 +15,13 @@
       "when": 1771265341692,
       "tag": "0001_blushing_thing",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1772453639396,
+      "tag": "0002_quiet_white_queen",
+      "breakpoints": true
     }
   ]
 }

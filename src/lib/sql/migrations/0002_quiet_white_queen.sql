@@ -1,0 +1,1 @@
+ALTER TABLE "inventory_reservations" ADD COLUMN "updated_at" timestamp DEFAULT now() NOT NULL;

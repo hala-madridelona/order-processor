@@ -5,11 +5,11 @@ import { orders } from "./lib/sql/models/orders.js";
 import { createOrder } from "./lib/api/orders/create-order.js";
 import { inventory_reservations } from "./lib/sql/models/inventory_reservations.js";
 import { count } from "drizzle-orm";
+import { fetchOrderStatus } from "./lib/api/orders/fetch-status.js";
 
 const app = express();
 app.get("/", async (req, res) => {
   try {
-    console.log('REQUEST LOOKS LIKE => ', req);
     const client = pgClient.getClient();
     const results = await Promise.all([
       client.select({ count: count() }).from(orders),
@@ -22,6 +22,20 @@ app.get("/", async (req, res) => {
     res.send(`SWW => ${error}`);
   }
 });
+
+
+app.get("/orders/:orderId/status", async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const result = await fetchOrderStatus(orderId);
+    if (!result.found) {
+      res.status(404).json({ error: result.error })
+    }
+    res.status(200).json(result.entry);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message || "Something went wrong!"});
+  }
+})
 
 app.post("/create", createOrder);
 
