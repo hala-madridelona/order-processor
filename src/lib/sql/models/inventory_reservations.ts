@@ -6,6 +6,7 @@ export const inventory_reservations = pgTable('inventory_reservations', {
     id: uuid('id').primaryKey().defaultRandom(),
     orderId: uuid('order_id').notNull().references(() => orders.id).unique(),
     createdAt: timestamp('created_at').notNull().defaultNow(),
+    updatedAt: timestamp('updated_at').notNull().defaultNow(),
     status: genericStatusEnum('status').default(GenericStatus.PENDING).notNull()
 },
     (table) => [
