@@ -6,6 +6,7 @@ import { createOrder } from "./lib/api/orders/create-order.js";
 import { inventory_reservations } from "./lib/sql/models/inventory_reservations.js";
 import { count } from "drizzle-orm";
 import { fetchOrderStatus } from "./lib/api/orders/fetch-status.js";
+import { listOrders } from "./lib/api/orders/list-order.js";
 
 const app = express();
 app.get("/", async (req, res) => {
@@ -38,6 +39,7 @@ app.get("/orders/:orderId/status", async (req, res) => {
 })
 
 app.post("/create", createOrder);
+app.get('/list', listOrders);
 
 app.listen(3000,() => {
   console.log('Listening at 3000 <U>')
