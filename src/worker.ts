@@ -34,7 +34,8 @@ setInterval(() => {
                 console.log("Something went wrong with SQS => ", error);
             }
 
- 
+            // Delete this message from OrderQueue
+            await OrderQueue.delete(ReceiptHandle as string);
         } catch (error) {
             console.error('SWW in worker for O queue => ', error);
         }
@@ -59,6 +60,9 @@ setInterval(() => {
             const orderStatus = prepareOrderStatusFromInventoryStatus(inventoryStatus as GenericStatus);
 
             await updateOrderStatus(orderId, orderStatus);
+
+            // Delete this message from InventoryQueue
+            await InventoryQueue.delete(ReceiptHandle as string);
         } catch (error) {
             console.error('SWW in worker for IR Queue ',  error);
         }

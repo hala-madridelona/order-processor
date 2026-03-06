@@ -7,7 +7,8 @@ export const payments = pgTable('payments', {
     orderId: uuid('order_id').notNull().references(() => orders.id).unique(),
     createdAt: timestamp('created_at').notNull().defaultNow(),
     updatedAt: timestamp('updated_at').notNull().defaultNow(),
-    gatewayPaymentId: text('gateway_payment_id').unique(),
+    paymentIntentId: text('payment_intent_id').unique(),
+    amount: text('amount'),
     status: genericStatusEnum('status').default(GenericStatus.PENDING).notNull()
 }, (table) => [
     index("idx_payment_status").on(table.status),
