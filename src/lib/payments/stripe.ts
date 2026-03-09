@@ -35,3 +35,15 @@ export const createPaymentIntent = async (orderId: string) => {
         throw new Error(`Could not create payment intent: ${errorMessage}`);
     }
 }
+
+export const constructStripeWebhookEvent = (requestBody: any, signature: any) => {
+    let event;
+    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
+    const stripe = getStripe();
+    event = stripe.webhooks.constructEvent(
+        requestBody,
+        signature,
+        endpointSecret
+    );
+    return event;
+}
