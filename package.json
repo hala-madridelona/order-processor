@@ -16,7 +16,8 @@
     "start:worker": "node dist/worker.js",
     "start:recovery": "node dist/recovery.js",
     "db:migrate": "npx drizzle-kit generate --dialect=postgresql --out ./src/lib/sql/migrations --schema=./dist/lib/sql/models/*.js",
-    "db:studio": "npx drizzle-kit studio"
+    "db:studio": "npx drizzle-kit studio",
+    "stress:test": "node scripts/stress-test.mjs"
   },
   "keywords": [],
   "author": "",
